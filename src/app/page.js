@@ -1,95 +1,125 @@
-import Image from 'next/image'
-import styles from './page.module.css'
+"use client";
+
+import {
+  Modal,
+  ModalOverlay,
+  ModalContent,
+  ModalHeader,
+  ModalFooter,
+  ModalBody,
+  ModalCloseButton,
+  Button,
+  useDisclosure,
+  useToast,
+  FormControl,
+  FormLabel,
+  Input,
+  Card,
+  CardHeader,
+  CardBody,
+  CardFooter,
+  Image,
+  Stack,
+  Heading,
+  Text,
+  ButtonGroup,
+  SimpleGrid,
+} from "@chakra-ui/react";
 
 export default function Home() {
+  const { isOpen, onOpen, onClose } = useDisclosure();
+  const toast = useToast();
+
+  function regalarAction() {
+    toast({
+      title: "Regalo registrado",
+      description:
+        "Gracias por el regalo, contamos con eso! Nos has salvado estamos agradecidos 👽",
+      status: "success",
+      duration: 9000,
+      isClosable: true,
+      position: "top",
+    });
+    onClose();
+  }
+
   return (
-    <main className={styles.main}>
-      <div className={styles.description}>
-        <p>
-          Get started by editing&nbsp;
-          <code className={styles.code}>src/app/page.js</code>
-        </p>
-        <div>
-          <a
-            href="https://vercel.com?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            By{' '}
+    <main>
+      <SimpleGrid
+        spacing={4}
+        templateColumns="repeat(auto-fill, minmax(200px, 1fr))"
+      >
+        <Card size="sm">
+          <CardBody>
             <Image
-              src="/vercel.svg"
-              alt="Vercel Logo"
-              className={styles.vercelLogo}
-              width={100}
-              height={24}
-              priority
+              src="https://images.unsplash.com/photo-1555041469-a586c61ea9bc?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1770&q=80"
+              alt="Green double couch with wooden legs"
+              borderRadius="lg"
+              boxSize="200px"
             />
-          </a>
-        </div>
-      </div>
+            <Heading size="md"> Customer dashboard</Heading>
+          </CardBody>
+          <CardFooter>
+            <Button variant="solid" colorScheme="blue">
+              Agregar al carrito
+            </Button>
+          </CardFooter>
+        </Card>
+        <Card size="sm">
+          <CardBody>
+            <Image
+              src="https://images.unsplash.com/photo-1555041469-a586c61ea9bc?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1770&q=80"
+              alt="Green double couch with wooden legs"
+              borderRadius="lg"
+              boxSize="200px"
+            />
+            <Heading size="md"> Customer dashboard</Heading>
+          </CardBody>
+          <CardFooter>
+            <Button variant="solid" colorScheme="blue">
+              Agregar al carrito
+            </Button>
+          </CardFooter>
+        </Card>
+        <Card size="sm">
+          <CardBody>
+            <Image
+              src="https://images.unsplash.com/photo-1555041469-a586c61ea9bc?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1770&q=80"
+              alt="Green double couch with wooden legs"
+              borderRadius="lg"
+              boxSize="200px"
+            />
+            <Heading size="md"> Customer dashboard</Heading>
+          </CardBody>
+          <CardFooter>
+            <Button variant="solid" colorScheme="blue">
+              Agregar al carrito
+            </Button>
+          </CardFooter>
+        </Card>
+      </SimpleGrid>
 
-      <div className={styles.center}>
-        <Image
-          className={styles.logo}
-          src="/next.svg"
-          alt="Next.js Logo"
-          width={180}
-          height={37}
-          priority
-        />
-      </div>
+      <Button onClick={onOpen}>Ver carrito</Button>
+      <Modal isOpen={isOpen} onClose={onClose}>
+        <ModalOverlay />
+        <ModalContent>
+          <ModalHeader>Carrito de regalos</ModalHeader>
+          <ModalCloseButton />
+          <ModalBody>
+            <p>cosas elegidass</p>
+            <FormControl>
+              <FormLabel>Tu nombre</FormLabel>
+              <Input placeholder="Carlos" />
+            </FormControl>
+          </ModalBody>
 
-      <div className={styles.grid}>
-        <a
-          href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Docs <span>-&gt;</span>
-          </h2>
-          <p>Find in-depth information about Next.js features and API.</p>
-        </a>
-
-        <a
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Learn <span>-&gt;</span>
-          </h2>
-          <p>Learn about Next.js in an interactive course with&nbsp;quizzes!</p>
-        </a>
-
-        <a
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Templates <span>-&gt;</span>
-          </h2>
-          <p>Explore the Next.js 13 playground.</p>
-        </a>
-
-        <a
-          href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Deploy <span>-&gt;</span>
-          </h2>
-          <p>
-            Instantly deploy your Next.js site to a shareable URL with Vercel.
-          </p>
-        </a>
-      </div>
+          <ModalFooter>
+            <Button colorScheme="blue" mr={3} onClick={regalarAction}>
+              Regalar :)
+            </Button>
+          </ModalFooter>
+        </ModalContent>
+      </Modal>
     </main>
-  )
+  );
 }
