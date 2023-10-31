@@ -24,7 +24,10 @@ import {
   Text,
   ButtonGroup,
   SimpleGrid,
+  Icon,
+  Center,
 } from "@chakra-ui/react";
+import { BsCart2 } from "react-icons/bs";
 
 export default function Home() {
   const { isOpen, onOpen, onClose } = useDisclosure();
@@ -45,6 +48,10 @@ export default function Home() {
 
   return (
     <main>
+      <Heading>Hola! Somos Sem y Vicky</Heading>
+
+      <Text fontSize="2xl">In love with React & Next</Text>
+
       <SimpleGrid
         spacing={4}
         templateColumns="repeat(auto-fill, minmax(200px, 1fr))"
@@ -99,7 +106,9 @@ export default function Home() {
         </Card>
       </SimpleGrid>
 
-      <Button onClick={onOpen}>Ver carrito</Button>
+      <Button onClick={onOpen}>
+        Ver carrito <Icon as={BsCart2} ml={1} />
+      </Button>
       <Modal isOpen={isOpen} onClose={onClose}>
         <ModalOverlay />
         <ModalContent>
