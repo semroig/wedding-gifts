@@ -30,6 +30,8 @@ import {
   VStack,
   Box,
   Container,
+  WrapItem,
+  Wrap,
 } from "@chakra-ui/react";
 import { BsCart2 } from "react-icons/bs";
 
@@ -52,77 +54,179 @@ export default function Home() {
 
   return (
     <Container maxW="6xl" my={20}>
-      <Stack direction="row">
-        <Box>
-          <Heading>Hola! Somos Sem y Vicky</Heading>
-          <Text fontSize="2xl">
-            In love with React & Next. In love with React & Next. In love with
-            React & Next. In love with React & Next. In love with React & Next.
-          </Text>
-        </Box>
+      <Stack direction="row" mb={20}>
+        <Center>
+          <Box mr={20}>
+            <Heading size="3xl">Hola! Somos Sem y Vicky. Bla bla bla.</Heading>
+            <Text fontSize="xl">
+              In love with React & Next. In love with React & Next. In love with
+              React & Next. In love with React & Next. In love with React &
+              Next. In love with React & Next. Bla bla bla.
+            </Text>
+            <Button colorScheme="blue">Get started</Button>
+          </Box>
+        </Center>
 
         <Image
           src="https://bit.ly/dan-abramov"
           alt="Dan Abramov"
           boxSize="400px"
+          borderRadius="xl"
         />
       </Stack>
 
-      <Heading>Hola! Somos Sem y Vicky</Heading>
-      <Text fontSize="2xl">
-        In love with React & Next. In love with React & Next.
-      </Text>
-
-      <Stack direction="row">
-        <Card size="sm">
-          <CardBody>
-            <Image
-              src="https://images.unsplash.com/photo-1555041469-a586c61ea9bc?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1770&q=80"
-              alt="Green double couch with wooden legs"
-              borderRadius="lg"
-              boxSize="200px"
-            />
-            <Heading size="md"> Customer dashboard</Heading>
-          </CardBody>
-          <CardFooter>
-            <Button variant="solid" colorScheme="blue">
-              Agregar al carrito
-            </Button>
-          </CardFooter>
-        </Card>
-        <Card size="sm">
-          <CardBody>
-            <Image
-              src="https://images.unsplash.com/photo-1555041469-a586c61ea9bc?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1770&q=80"
-              alt="Green double couch with wooden legs"
-              borderRadius="lg"
-              boxSize="200px"
-            />
-            <Heading size="md"> Customer dashboard</Heading>
-          </CardBody>
-          <CardFooter>
-            <Button variant="solid" colorScheme="blue">
-              Agregar al carrito
-            </Button>
-          </CardFooter>
-        </Card>
-        <Card size="sm">
-          <CardBody>
-            <Image
-              src="https://images.unsplash.com/photo-1555041469-a586c61ea9bc?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1770&q=80"
-              alt="Green double couch with wooden legs"
-              borderRadius="lg"
-              boxSize="200px"
-            />
-            <Heading size="md"> Customer dashboard</Heading>
-          </CardBody>
-          <CardFooter>
-            <Button variant="solid" colorScheme="blue">
-              Agregar al carrito
-            </Button>
-          </CardFooter>
-        </Card>
-      </Stack>
+      <Container mt={20} pt={20} maxW="6xl" centerContent>
+        <Heading size="2xl">Hola! Somos Sem y Vicky</Heading>
+        <Text fontSize="2xl" mt={5} mb={14}>
+          In love with React & Next. In love with React & Next.
+        </Text>
+        <Wrap spacing={4} justify="center">
+          <WrapItem>
+            <Card maxW="240px" w="100%">
+              <CardBody>
+                <Image
+                  src="https://images.unsplash.com/photo-1555041469-a586c61ea9bc?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1770&q=80"
+                  alt="Green double couch with wooden legs"
+                  borderRadius="lg"
+                  boxSize="200px"
+                />
+                <Text fontSize="md" py={3}>
+                  Tacho de basura para baño
+                </Text>
+                <Button variant="solid" colorScheme="blue" w="full">
+                  Agregar al carrito
+                </Button>
+              </CardBody>
+            </Card>
+          </WrapItem>
+          <WrapItem>
+            <Card maxW="240px" w="100%">
+              <CardBody>
+                <Image
+                  src="https://images.unsplash.com/photo-1555041469-a586c61ea9bc?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1770&q=80"
+                  alt="Green double couch with wooden legs"
+                  borderRadius="lg"
+                  boxSize="200px"
+                />
+                <Text fontSize="md" py={3}>
+                  Tacho de basura para baño
+                </Text>
+                <Button variant="solid" colorScheme="blue" w="full">
+                  Agregar al carrito
+                </Button>
+              </CardBody>
+            </Card>
+          </WrapItem>
+          <WrapItem>
+            <Card maxW="240px" w="100%">
+              <CardBody>
+                <Image
+                  src="https://images.unsplash.com/photo-1555041469-a586c61ea9bc?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1770&q=80"
+                  alt="Green double couch with wooden legs"
+                  borderRadius="lg"
+                  boxSize="200px"
+                />
+                <Text fontSize="md" py={3}>
+                  Tacho de basura para baño
+                </Text>
+                <Button variant="solid" colorScheme="blue" w="full">
+                  Agregar al carrito
+                </Button>
+              </CardBody>
+            </Card>
+          </WrapItem>
+          <WrapItem>
+            <Card maxW="240px" w="100%">
+              <CardBody>
+                <Image
+                  src="https://images.unsplash.com/photo-1555041469-a586c61ea9bc?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1770&q=80"
+                  alt="Green double couch with wooden legs"
+                  borderRadius="lg"
+                  boxSize="200px"
+                />
+                <Text fontSize="md" py={3}>
+                  Tacho de basura para baño
+                </Text>
+                <Button variant="solid" colorScheme="blue" w="full">
+                  Agregar al carrito
+                </Button>
+              </CardBody>
+            </Card>
+          </WrapItem>
+          <WrapItem>
+            <Card maxW="240px" w="100%">
+              <CardBody>
+                <Image
+                  src="https://images.unsplash.com/photo-1555041469-a586c61ea9bc?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1770&q=80"
+                  alt="Green double couch with wooden legs"
+                  borderRadius="lg"
+                  boxSize="200px"
+                />
+                <Text fontSize="md" py={3}>
+                  Tacho de basura para baño
+                </Text>
+                <Button variant="solid" colorScheme="blue" w="full">
+                  Agregar al carrito
+                </Button>
+              </CardBody>
+            </Card>
+          </WrapItem>
+          <WrapItem>
+            <Card maxW="240px" w="100%">
+              <CardBody>
+                <Image
+                  src="https://images.unsplash.com/photo-1555041469-a586c61ea9bc?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1770&q=80"
+                  alt="Green double couch with wooden legs"
+                  borderRadius="lg"
+                  boxSize="200px"
+                />
+                <Text fontSize="md" py={3}>
+                  Tacho de basura para baño
+                </Text>
+                <Button variant="solid" colorScheme="blue" w="full">
+                  Agregar al carrito
+                </Button>
+              </CardBody>
+            </Card>
+          </WrapItem>
+          <WrapItem>
+            <Card maxW="240px" w="100%">
+              <CardBody>
+                <Image
+                  src="https://images.unsplash.com/photo-1555041469-a586c61ea9bc?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1770&q=80"
+                  alt="Green double couch with wooden legs"
+                  borderRadius="lg"
+                  boxSize="200px"
+                />
+                <Text fontSize="md" py={3}>
+                  Tacho de basura para baño
+                </Text>
+                <Button variant="solid" colorScheme="blue" w="full">
+                  Agregar al carrito
+                </Button>
+              </CardBody>
+            </Card>
+          </WrapItem>
+          <WrapItem>
+            <Card maxW="240px" w="100%">
+              <CardBody>
+                <Image
+                  src="https://images.unsplash.com/photo-1555041469-a586c61ea9bc?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1770&q=80"
+                  alt="Green double couch with wooden legs"
+                  borderRadius="lg"
+                  boxSize="200px"
+                />
+                <Text fontSize="md" py={3}>
+                  Tacho de basura para baño
+                </Text>
+                <Button variant="solid" colorScheme="blue" w="full">
+                  Agregar al carrito
+                </Button>
+              </CardBody>
+            </Card>
+          </WrapItem>
+        </Wrap>
+      </Container>
 
       <Button onClick={onOpen}>
         Ver carrito <Icon as={BsCart2} ml={1} />
