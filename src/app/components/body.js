@@ -14,20 +14,12 @@ import {
   FormControl,
   FormLabel,
   Input,
-  Card,
-  CardHeader,
-  CardBody,
-  CardFooter,
   Image,
   Stack,
   Heading,
   Text,
-  ButtonGroup,
-  SimpleGrid,
   Icon,
   Center,
-  StackDivider,
-  VStack,
   Box,
   Container,
   WrapItem,
@@ -36,6 +28,11 @@ import {
   Flex,
 } from "@chakra-ui/react";
 import { BsCart2 } from "react-icons/bs";
+
+import Tarjeta from "./tarjeta";
+import Footer from "./footer";
+
+import NavStyles from "./navbar.module.css";
 
 export default function Body({ records }) {
   const { isOpen, onOpen, onClose } = useDisclosure();
@@ -57,21 +54,21 @@ export default function Body({ records }) {
   return (
     <Grid minH="100vh" flexDir="column" templateRows="auto 1fr auto">
       {/* Navbar */}
-      <Box as="nav" borderBottom="1px solid grey">
-        <Container maxW="container.lg" py={4}>
-          <Flex justifyContent="space-between" alignItems="center">
-            <Text fontSize="4xl">navbar</Text>
+      <div className={NavStyles.webNavbar}>
+        <Box as="nav" borderBottom="1px solid grey" backgroundColor="orange.50">
+          <Container maxW="container.lg" py={4}>
+            <Flex justifyContent="space-between" alignItems="center">
+              <Text fontSize="4xl">navbar</Text>
 
-            <Flex gap={4} alignItems="center" fontWeight="semibold">
-              <Button onClick={onOpen}>
-                Ver carrito <Icon as={BsCart2} ml={1} />
-              </Button>
+              <Flex gap={4} alignItems="center" fontWeight="semibold">
+                <Button onClick={onOpen}>
+                  Ver carrito <Icon as={BsCart2} ml={1} />
+                </Button>
+              </Flex>
             </Flex>
-          </Flex>
-        </Container>
-      </Box>
-
-      {/* {prods.length > 0 ? <p>hay prodss</p> : <p>No hay nada</p>} */}
+          </Container>
+        </Box>
+      </div>
 
       {/* Body (Hero + Catalogo) */}
       <Container maxW="6xl" my={20}>
@@ -86,7 +83,9 @@ export default function Body({ records }) {
                 with React & Next. In love with React & Next. In love with React
                 & Next. In love with React & Next. Bla bla bla.
               </Text>
-              <Button colorScheme="blue">Get started</Button>
+              <Button colorScheme="blue" position="static">
+                Get started
+              </Button>
             </Box>
           </Center>
 
@@ -106,22 +105,7 @@ export default function Body({ records }) {
           <Wrap spacing={4} justify="center">
             {records?.map((product) => (
               <WrapItem key={product.id}>
-                <Card maxW="240px" w="100%">
-                  <CardBody>
-                    <Image
-                      src={product.image_url}
-                      alt="Green double couch with wooden legs"
-                      borderRadius="lg"
-                      boxSize="200px"
-                    />
-                    <Text fontSize="md" py={3}>
-                      {product.Nombre}
-                    </Text>
-                    <Button variant="solid" colorScheme="blue" w="full">
-                      Agregar al carrito
-                    </Button>
-                  </CardBody>
-                </Card>
+                <Tarjeta record={product}></Tarjeta>
               </WrapItem>
             ))}
           </Wrap>
@@ -129,26 +113,7 @@ export default function Body({ records }) {
       </Container>
 
       {/* Footer */}
-      <Box mt="auto" as="footer" pt={2}>
-        <Container
-          maxW="container.lg"
-          pb={4}
-          pt={2}
-          borderTop="1px solid black"
-        >
-          <Grid templateColumns="repeat(3, 1fr)" gap={1}>
-            <Text fontSize="sm">
-              🇦🇷 2023 - Design and developed with ♡ by us
-            </Text>
-
-            <Flex justifyContent="center">
-              <Text fontSize="2xl" color="accent">
-                Sem & Vicky
-              </Text>
-            </Flex>
-          </Grid>
-        </Container>
-      </Box>
+      <Footer></Footer>
 
       {/* Modal for carrito */}
       <Modal isOpen={isOpen} onClose={onClose}>

@@ -9,12 +9,6 @@ export default async function Home() {
     process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY
   );
 
-  // const [prods, setProds] = useState([]);
-  // const { data: records } = supabase.from("products").select();
-
-  // console.log(records);
-  // setProds(records);
-
   const { data: products } = await supabase.from("products").select();
   console.log(products);
 
