@@ -28,6 +28,7 @@ import {
   Flex,
 } from "@chakra-ui/react";
 import { BsCart2 } from "react-icons/bs";
+import { useState } from "react";
 
 import Tarjeta from "./tarjeta";
 import Footer from "./footer";
@@ -37,6 +38,8 @@ import NavStyles from "./navbar.module.css";
 export default function Body({ records }) {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const toast = useToast();
+
+  const [carritoItems, setCarritoItems] = useState([]);
 
   function regalarAction() {
     toast({
@@ -50,6 +53,11 @@ export default function Body({ records }) {
     });
     onClose();
   }
+
+  const agregarRegalo = (productId) => {
+    console.log("se agrega un regalo");
+    setCarritoItems([...carritoItems, { id: productId }]);
+  };
 
   return (
     <Grid minH="100vh" flexDir="column" templateRows="auto 1fr auto">
@@ -105,7 +113,10 @@ export default function Body({ records }) {
           <Wrap spacing={4} justify="center">
             {records?.map((product) => (
               <WrapItem key={product.id}>
-                <Tarjeta record={product}></Tarjeta>
+                <Tarjeta
+                  record={product}
+                  agregarregalo={agregarRegalo}
+                ></Tarjeta>
               </WrapItem>
             ))}
           </Wrap>
