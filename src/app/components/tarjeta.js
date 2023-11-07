@@ -2,7 +2,7 @@ import { Text, Card, CardBody, Image, Button } from "@chakra-ui/react";
 
 export default function Tarjeta({ record, agregarregalo }) {
   return (
-    <Card maxW="240px" w="100%" position="static">
+    <Card maxW="240px" w="100%" position="static" rounded="lg" shadow="lg">
       <CardBody>
         <Image
           src={record.image_url}

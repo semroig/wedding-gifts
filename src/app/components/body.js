@@ -26,6 +26,8 @@ import {
   Wrap,
   Grid,
   Flex,
+  VStack,
+  useBreakpointValue,
 } from "@chakra-ui/react";
 import { BsCart2 } from "react-icons/bs";
 import { useState } from "react";
@@ -66,7 +68,12 @@ export default function Body({ records }) {
   };
 
   return (
-    <Grid minH="100vh" flexDir="column" templateRows="auto 1fr auto">
+    <Grid
+      minH="100vh"
+      flexDir="column"
+      templateRows="auto 1fr auto"
+      backgroundColor="blackAlpha.50"
+    >
       {/* Navbar */}
       <div className={NavStyles.webNavbar}>
         <Box as="nav" borderBottom="1px solid grey" backgroundColor="orange.50">
@@ -85,8 +92,7 @@ export default function Body({ records }) {
       </div>
 
       {/* Body (Hero + Catalogo) */}
-      <Container maxW="6xl" my={20}>
-        <Stack direction="row" mb={20}>
+      {/* <Stack direction="row" mb={20}>
           <Center>
             <Box mr={20}>
               <Heading size="3xl">
@@ -109,9 +115,48 @@ export default function Body({ records }) {
             boxSize="400px"
             borderRadius="xl"
           />
-        </Stack>
+        </Stack> */}
 
-        <Container mt={20} pt={20} maxW="6xl" centerContent>
+      <Flex
+        w={"full"}
+        h={"85vh"}
+        backgroundImage={"url()"}
+        backgroundSize={"cover"}
+        backgroundPosition={"center center"}
+        pr={20}
+      >
+        <VStack
+          w={"full"}
+          justify={"center"}
+          bgGradient={"linear(to-r, blackAlpha.300, transparent)"}
+          mr={20}
+          pr={20}
+        >
+          <Stack maxW={"2xl"} spacing={6} pr={20} mr={20}>
+            <Text fontSize="3xl">¡Hola!</Text>
+            <Heading size="3xl">Somos Sem y Vicky</Heading>
+            <Text fontSize="xl">
+              Para hacer más sencilla su elección de regalo, aqui encontraran
+              los articulos que nos faltan para nuestro futuro hogar. Gracias
+              por acompañarnos!
+            </Text>
+            <Stack direction={"row"}>
+              <Button
+                bg={"blue.400"}
+                rounded={"full"}
+                color={"white"}
+                _hover={{ bg: "blue.500" }}
+                position="static"
+              >
+                Comenzar {">>"}
+              </Button>
+            </Stack>
+          </Stack>
+        </VStack>
+      </Flex>
+
+      <Container maxW="6xl" my={20}>
+        <Container mt={20} maxW="6xl" centerContent>
           <Heading size="2xl">Hola! Somos Sem y Vicky</Heading>
           <Text fontSize="2xl" mt={5} mb={14}>
             In love with React & Next. In love with React & Next.
