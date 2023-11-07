@@ -14,28 +14,27 @@ import {
   FormControl,
   FormLabel,
   Input,
-  Image,
   Stack,
   Heading,
   Text,
-  Icon,
-  Center,
-  Box,
   Container,
   WrapItem,
   Wrap,
   Grid,
   Flex,
   VStack,
-  useBreakpointValue,
 } from "@chakra-ui/react";
-import { BsCart2 } from "react-icons/bs";
 import { useState } from "react";
+import { createClient } from "@supabase/supabase-js";
 
 import Tarjeta from "./tarjeta";
 import Footer from "./footer";
+import Navbar from "./navbar";
 
-import NavStyles from "./navbar.module.css";
+const supabase = createClient(
+  process.env.NEXT_PUBLIC_SUPABASE_URL,
+  process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY
+);
 
 export default function Body({ records }) {
   const { isOpen, onOpen, onClose } = useDisclosure();
@@ -47,6 +46,7 @@ export default function Body({ records }) {
 
   function regalarAction(event) {
     event.preventDefault();
+    createCarrito();
     toast({
       title: "Regalo registrado",
       description:
@@ -57,15 +57,22 @@ export default function Body({ records }) {
       position: "top",
     });
     onClose();
-
-    console.log(name);
-    console.log(message);
   }
 
   const agregarRegalo = (productId) => {
     console.log("se agrega un regalo");
     setCarritoItems([...carritoItems, productId]);
   };
+
+  async function createCarrito() {
+    const { data, error } = await supabase
+      .from("carrito")
+      .insert([{ name: name, message: message, items: carritoItems }])
+      .select();
+
+    console.log("data nuevo carrito");
+    console.log(data);
+  }
 
   return (
     <Grid
@@ -74,48 +81,7 @@ export default function Body({ records }) {
       templateRows="auto 1fr auto"
       backgroundColor="blackAlpha.50"
     >
-      {/* Navbar */}
-      <div className={NavStyles.webNavbar}>
-        <Box as="nav" borderBottom="1px solid grey" backgroundColor="orange.50">
-          <Container maxW="container.lg" py={4}>
-            <Flex justifyContent="space-between" alignItems="center">
-              <Text fontSize="4xl">navbar</Text>
-
-              <Flex gap={4} alignItems="center" fontWeight="semibold">
-                <Button onClick={onOpen}>
-                  Ver carrito <Icon as={BsCart2} ml={1} />
-                </Button>
-              </Flex>
-            </Flex>
-          </Container>
-        </Box>
-      </div>
-
-      {/* Body (Hero + Catalogo) */}
-      {/* <Stack direction="row" mb={20}>
-          <Center>
-            <Box mr={20}>
-              <Heading size="3xl">
-                Hola! Somos Sem y Vicky. Bla bla bla.
-              </Heading>
-              <Text fontSize="xl">
-                In love with React & Next. In love with React & Next. In love
-                with React & Next. In love with React & Next. In love with React
-                & Next. In love with React & Next. Bla bla bla.
-              </Text>
-              <Button colorScheme="blue" position="static">
-                Get started
-              </Button>
-            </Box>
-          </Center>
-
-          <Image
-            src="https://bit.ly/dan-abramov"
-            alt="Dan Abramov"
-            boxSize="400px"
-            borderRadius="xl"
-          />
-        </Stack> */}
+      <Navbar abrir={onOpen}></Navbar>
 
       <Flex
         w={"full"}
@@ -132,9 +98,9 @@ export default function Body({ records }) {
           mr={20}
           pr={20}
         >
-          <Stack maxW={"2xl"} spacing={6} pr={20} mr={20}>
+          <Stack maxW={"2xl"} spacing={4} pr={20} mr={20}>
             <Text fontSize="3xl">¡Hola!</Text>
-            <Heading size="3xl">Somos Sem y Vicky</Heading>
+            <Heading size="2xl">Somos Sem y Vicky</Heading>
             <Text fontSize="xl">
               Para hacer más sencilla su elección de regalo, aqui encontraran
               los articulos que nos faltan para nuestro futuro hogar. Gracias
@@ -174,7 +140,6 @@ export default function Body({ records }) {
         </Container>
       </Container>
 
-      {/* Footer */}
       <Footer></Footer>
 
       {/* Modal for carrito */}
