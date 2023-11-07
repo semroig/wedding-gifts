@@ -40,8 +40,11 @@ export default function Body({ records }) {
   const toast = useToast();
 
   const [carritoItems, setCarritoItems] = useState([]);
+  const [name, setName] = useState();
+  const [message, setMessage] = useState();
 
-  function regalarAction() {
+  function regalarAction(event) {
+    event.preventDefault();
     toast({
       title: "Regalo registrado",
       description:
@@ -52,11 +55,14 @@ export default function Body({ records }) {
       position: "top",
     });
     onClose();
+
+    console.log(name);
+    console.log(message);
   }
 
   const agregarRegalo = (productId) => {
     console.log("se agrega un regalo");
-    setCarritoItems([...carritoItems, { id: productId }]);
+    setCarritoItems([...carritoItems, productId]);
   };
 
   return (
@@ -132,19 +138,34 @@ export default function Body({ records }) {
         <ModalContent>
           <ModalHeader>Carrito de regalos</ModalHeader>
           <ModalCloseButton />
-          <ModalBody>
-            <p>cosas elegidass</p>
-            <FormControl>
-              <FormLabel>Tu nombre</FormLabel>
-              <Input placeholder="Carlos" />
-            </FormControl>
-          </ModalBody>
 
-          <ModalFooter>
-            <Button colorScheme="blue" mr={3} onClick={regalarAction}>
-              Regalar :)
-            </Button>
-          </ModalFooter>
+          <form onSubmit={regalarAction}>
+            <ModalBody>
+              {carritoItems?.map((carritoItem) => (
+                <p key={carritoItem}>{carritoItem}</p>
+              ))}
+              <FormControl>
+                <FormLabel>Tu nombre</FormLabel>
+                <Input
+                  placeholder="Carlos"
+                  onChange={(event) => setName(event.target.value)}
+                />
+              </FormControl>
+              <FormControl>
+                <FormLabel>Tu mensaje</FormLabel>
+                <Input
+                  placeholder="Holaa"
+                  onChange={(event) => setMessage(event.target.value)}
+                />
+              </FormControl>
+            </ModalBody>
+
+            <ModalFooter>
+              <Button colorScheme="blue" mr={3} type="submit">
+                Regalar :)
+              </Button>
+            </ModalFooter>
+          </form>
         </ModalContent>
       </Modal>
     </Grid>

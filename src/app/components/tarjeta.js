@@ -18,7 +18,9 @@ export default function Tarjeta({ record, agregarregalo }) {
           colorScheme="blue"
           w="full"
           position="static"
-          onClick={agregarregalo}
+          onClick={() => {
+            agregarregalo(record.id);
+          }}
         >
           Agregar al carrito
         </Button>
