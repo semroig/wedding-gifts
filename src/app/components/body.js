@@ -23,6 +23,7 @@ import {
   Grid,
   Flex,
   VStack,
+  Box,
 } from "@chakra-ui/react";
 import { useState } from "react";
 import { createClient } from "@supabase/supabase-js";
@@ -117,7 +118,7 @@ export default function Body({ records }) {
           <Stack maxW={"2xl"} spacing={4} pr={20} mr={20}>
             <Text fontSize="3xl">¡Hola!</Text>
             <Heading size="2xl">Somos Sem y Vicky</Heading>
-            <Text fontSize="xl">
+            <Text fontSize="xl" pr={20}>
               Para hacer más sencilla su elección de regalo, aqui encontraran
               los articulos que nos faltan para nuestro futuro hogar. Gracias
               por acompañarnos!
@@ -138,11 +139,29 @@ export default function Body({ records }) {
       </Flex>
 
       <Container maxW="6xl" my={20}>
-        <Container mt={20} maxW="6xl" centerContent>
-          <Heading size="2xl">Hola! Somos Sem y Vicky</Heading>
-          <Text fontSize="2xl" mt={5} mb={14}>
-            In love with React & Next. In love with React & Next.
-          </Text>
+        <Container maxW="6xl" centerContent mt={5}>
+          <Stack direction={"row"} mb={10}>
+            <Box>
+              <Text fontSize="xl">LISTA DE ARTICULOS</Text>
+              <Heading size="2xl">Agregá y reservá tu regalo</Heading>
+            </Box>
+            <Box ml={20}>
+              <Text fontSize="xl">
+                1. Clickea en “Agregar” para reservar los articulos que queres
+                regalarnos
+              </Text>
+              <Text fontSize="xl">
+                2. Clickea el boton de “Carrito” para ver los articulos que
+                seleccionaste
+              </Text>
+              <Text fontSize="xl">
+                3. Una vez enviada tu reserva de articulos, compralos donde mas
+                te guste!
+              </Text>
+            </Box>
+          </Stack>
+
+          {/* Catalogo */}
           <Wrap spacing={4} justify="center">
             {records?.map((product) => (
               <WrapItem key={product.id}>

@@ -7,13 +7,13 @@ export default function Navbar({ abrir }) {
   return (
     <div className={NavStyles.webNavbar}>
       <Box as="nav" borderBottom="1px solid grey" backgroundColor="orange.50">
-        <Container maxW="container.lg" py={4}>
+        <Container maxW="container.lg" py={6}>
           <Flex justifyContent="space-between" alignItems="center">
             <Heading fontSize="xl">Sem & Vicky</Heading>
 
             <Flex gap={4} alignItems="center" fontWeight="semibold">
               <Button onClick={abrir}>
-                Ver carrito <Icon as={BsCart2} ml={1} />
+                Carrito <Icon as={BsCart2} ml={1} />
               </Button>
             </Flex>
           </Flex>
