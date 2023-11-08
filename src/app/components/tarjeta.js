@@ -19,7 +19,7 @@ export default function Tarjeta({ record, agregarregalo }) {
           w="full"
           position="static"
           onClick={() => {
-            agregarregalo(record.id);
+            agregarregalo(record.id, record.cantidad - 1);
           }}
         >
           Agregar al carrito

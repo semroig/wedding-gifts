@@ -41,12 +41,17 @@ export default function Body({ records }) {
   const toast = useToast();
 
   const [carritoItems, setCarritoItems] = useState([]);
+  const [prodsUpdate, setProdsUpdate] = useState([]);
   const [name, setName] = useState();
   const [message, setMessage] = useState();
 
   function regalarAction(event) {
+    // Primero, evito que se haga refresh de la página
     event.preventDefault();
+
+    // Creo el carrito y actualizo los products
     createCarrito();
+
     toast({
       title: "Regalo registrado",
       description:
@@ -59,15 +64,26 @@ export default function Body({ records }) {
     onClose();
   }
 
-  const agregarRegalo = (productId) => {
+  const agregarRegalo = (productId, cantRestante) => {
     console.log("se agrega un regalo");
     setCarritoItems([...carritoItems, productId]);
+    setProdsUpdate([...prodsUpdate, { id: productId, cantidad: cantRestante }]);
   };
 
   async function createCarrito() {
     const { data, error } = await supabase
       .from("carrito")
       .insert([{ name: name, message: message, items: carritoItems }])
+      .select();
+
+    console.log("data nuevo carrito");
+    console.log(data);
+  }
+
+  async function updateProducts() {
+    const { data, error } = await supabase
+      .from("carrito")
+      .update({ other_column: "otherValue" })
       .select();
 
     console.log("data nuevo carrito");
