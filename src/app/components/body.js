@@ -25,7 +25,7 @@ import {
   VStack,
   Box,
 } from "@chakra-ui/react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { createClient } from "@supabase/supabase-js";
 
 import Tarjeta from "./tarjeta";
@@ -37,7 +37,7 @@ const supabase = createClient(
   process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY
 );
 
-export default function Body({ records }) {
+export default function Body() {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const toast = useToast();
 
@@ -45,6 +45,8 @@ export default function Body({ records }) {
   const [prodsUpdate, setProdsUpdate] = useState([]);
   const [name, setName] = useState();
   const [message, setMessage] = useState();
+  const [refresher, setRefresher] = useState(0);
+  const [records, setRecords] = useState([]);
 
   function regalarAction(event) {
     // Primero, evito que se haga refresh de la página
@@ -53,6 +55,12 @@ export default function Body({ records }) {
     // Creo el carrito y actualizo los products
     createCarrito();
 
+    // Itero por los prods y los actualizo
+    prodsUpdate.forEach((element) =>
+      updateProducts(element.id, element.cantidad)
+    );
+
+    // Muestro toast verde, cierro popup y refresh de página (actualizando var de estado)
     toast({
       title: "Regalo registrado",
       description:
@@ -63,6 +71,7 @@ export default function Body({ records }) {
       position: "top",
     });
     onClose();
+    setRefresher(refresher + 1);
   }
 
   const agregarRegalo = (productId, cantRestante) => {
@@ -81,15 +90,30 @@ export default function Body({ records }) {
     console.log(data);
   }
 
-  async function updateProducts() {
+  async function updateProducts(id, cant) {
     const { data, error } = await supabase
-      .from("carrito")
-      .update({ other_column: "otherValue" })
+      .from("products")
+      .update({ cantidad: cant })
+      .eq("id", id)
       .select();
 
-    console.log("data nuevo carrito");
+    console.log("data nuevo prod");
     console.log(data);
   }
+
+  async function getProducts() {
+    const { data: products } = await supabase
+      .from("products")
+      .select("*")
+      .gt("cantidad", 0);
+
+    // Populo var de estado de registros
+    setRecords(products);
+  }
+
+  useEffect(() => {
+    getProducts();
+  }, [refresher]);
 
   return (
     <Grid
