@@ -45,7 +45,6 @@ export default function Body() {
   const [prodsUpdate, setProdsUpdate] = useState([]);
   const [name, setName] = useState();
   const [message, setMessage] = useState();
-  const [refresher, setRefresher] = useState(0);
   const [records, setRecords] = useState([]);
 
   function regalarAction(event) {
@@ -56,11 +55,11 @@ export default function Body() {
     createCarrito();
 
     // Itero por los prods y los actualizo
-    prodsUpdate.forEach((element) =>
-      updateProducts(element.id, element.cantidad)
-    );
+    prodsUpdate.forEach((element, index) => {
+      updateProducts(index, element.id, element.cantidad);
+    });
 
-    // Muestro toast verde, cierro popup y refresh de página (actualizando var de estado)
+    // Muestro toast verde y cierro popup
     toast({
       title: "Regalo registrado",
       description:
@@ -71,11 +70,9 @@ export default function Body() {
       position: "top",
     });
     onClose();
-    setRefresher(refresher + 1);
   }
 
   const agregarRegalo = (productId, cantRestante) => {
-    console.log("se agrega un regalo");
     setCarritoItems([...carritoItems, productId]);
     setProdsUpdate([...prodsUpdate, { id: productId, cantidad: cantRestante }]);
   };
@@ -85,35 +82,42 @@ export default function Body() {
       .from("carrito")
       .insert([{ name: name, message: message, items: carritoItems }])
       .select();
-
-    console.log("data nuevo carrito");
-    console.log(data);
   }
 
-  async function updateProducts(id, cant) {
+  function limpiarCarrito() {
+    setProdsUpdate([]);
+    setCarritoItems([]);
+  }
+
+  async function updateProducts(index, id, cant) {
     const { data, error } = await supabase
       .from("products")
       .update({ cantidad: cant })
       .eq("id", id)
       .select();
 
-    console.log("data nuevo prod");
-    console.log(data);
+    // Si es el último prod para actualizar, hago query refresh de prods y limpio carrito
+    if (index + 1 == prodsUpdate.length) {
+      getProducts();
+      limpiarCarrito();
+    }
   }
 
   async function getProducts() {
-    const { data: products } = await supabase
+    const { data: registros } = await supabase
       .from("products")
       .select("*")
       .gt("cantidad", 0);
 
+    console.table(registros);
+
     // Populo var de estado de registros
-    setRecords(products);
+    setRecords(registros);
   }
 
   useEffect(() => {
     getProducts();
-  }, [refresher]);
+  }, []);
 
   return (
     <Grid
@@ -213,19 +217,13 @@ export default function Body() {
               {carritoItems?.map((carritoItem) => (
                 <p key={carritoItem}>{carritoItem}</p>
               ))}
-              <FormControl>
+              <FormControl isRequired>
                 <FormLabel>Tu nombre</FormLabel>
-                <Input
-                  placeholder="Carlos"
-                  onChange={(event) => setName(event.target.value)}
-                />
+                <Input onChange={(event) => setName(event.target.value)} />
               </FormControl>
-              <FormControl>
+              <FormControl isRequired>
                 <FormLabel>Tu mensaje</FormLabel>
-                <Input
-                  placeholder="Holaa"
-                  onChange={(event) => setMessage(event.target.value)}
-                />
+                <Input onChange={(event) => setMessage(event.target.value)} />
               </FormControl>
             </ModalBody>
 
