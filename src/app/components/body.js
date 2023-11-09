@@ -24,6 +24,7 @@ import {
   Flex,
   VStack,
   Box,
+  Textarea,
 } from "@chakra-ui/react";
 import { useEffect, useState } from "react";
 import { createClient } from "@supabase/supabase-js";
@@ -128,6 +129,7 @@ export default function Body() {
     >
       <Navbar abrir={onOpen}></Navbar>
 
+      {/* Hero */}
       <Flex
         w={"full"}
         h={"85vh"}
@@ -171,7 +173,9 @@ export default function Body() {
           <Stack direction={"row"} mb={10}>
             <Box>
               <Text fontSize="xl">LISTA DE ARTICULOS</Text>
-              <Heading size="2xl">Agregá y reservá tu regalo</Heading>
+              <Heading size="2xl" pr={20}>
+                Agregá y reservá tu regalo
+              </Heading>
             </Box>
             <Box ml={20}>
               <Text fontSize="xl">
@@ -218,17 +222,19 @@ export default function Body() {
                 <p key={carritoItem}>{carritoItem}</p>
               ))}
               <FormControl isRequired>
-                <FormLabel>Tu nombre</FormLabel>
+                <FormLabel>Nombre</FormLabel>
                 <Input onChange={(event) => setName(event.target.value)} />
               </FormControl>
               <FormControl isRequired>
-                <FormLabel>Tu mensaje</FormLabel>
-                <Input onChange={(event) => setMessage(event.target.value)} />
+                <FormLabel>Mensaje</FormLabel>
+                <Textarea
+                  onChange={(event) => setMessage(event.target.value)}
+                />
               </FormControl>
             </ModalBody>
 
             <ModalFooter>
-              <Button colorScheme="blue" mr={3} type="submit">
+              <Button variant="outline" mr={3} type="submit">
                 Regalar :)
               </Button>
             </ModalFooter>

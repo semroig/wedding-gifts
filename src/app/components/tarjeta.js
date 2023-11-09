@@ -1,4 +1,5 @@
-import { Text, Card, CardBody, Image, Button } from "@chakra-ui/react";
+import { Text, Card, CardBody, Image, Button, Icon } from "@chakra-ui/react";
+import { FiGift } from "react-icons/fi";
 
 export default function Tarjeta({ record, agregarregalo }) {
   return (
@@ -14,15 +15,14 @@ export default function Tarjeta({ record, agregarregalo }) {
           {record.Nombre}
         </Text>
         <Button
-          variant="solid"
-          colorScheme="blue"
+          variant="outline"
           w="full"
           position="static"
           onClick={() => {
             agregarregalo(record.id, record.cantidad - 1);
           }}
         >
-          Agregar
+          Agregar <Icon as={FiGift} ml={1} />
         </Button>
       </CardBody>
     </Card>
