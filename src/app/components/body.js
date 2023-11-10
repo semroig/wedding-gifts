@@ -25,6 +25,8 @@ import {
   VStack,
   Box,
   Textarea,
+  Image,
+  Center,
 } from "@chakra-ui/react";
 import { useEffect, useState } from "react";
 import { createClient } from "@supabase/supabase-js";
@@ -57,7 +59,7 @@ export default function Body() {
 
     // Itero por los prods y los actualizo
     prodsUpdate.forEach((element, index) => {
-      updateProducts(index, element.id, element.cantidad);
+      updateProducts(index, element.id, element.cantidad - 1);
     });
 
     // Muestro toast verde y cierro popup
@@ -73,9 +75,9 @@ export default function Body() {
     onClose();
   }
 
-  const agregarRegalo = (productId, cantRestante) => {
-    setCarritoItems([...carritoItems, productId]);
-    setProdsUpdate([...prodsUpdate, { id: productId, cantidad: cantRestante }]);
+  const agregarRegalo = (record) => {
+    setCarritoItems([...carritoItems, record.id]);
+    setProdsUpdate([...prodsUpdate, record]);
   };
 
   async function createCarrito() {
@@ -218,8 +220,27 @@ export default function Body() {
 
           <form onSubmit={regalarAction}>
             <ModalBody>
-              {carritoItems?.map((carritoItem) => (
-                <p key={carritoItem}>{carritoItem}</p>
+              {prodsUpdate?.map((prod) => (
+                <Box
+                  key={prod.id}
+                  borderWidth="1px"
+                  borderRadius="lg"
+                  display="flex"
+                  p={3}
+                  my={3}
+                >
+                  <Image
+                    src={prod.image_url}
+                    alt={prod.Nombre}
+                    boxSize="80px"
+                    borderRadius="lg"
+                  />
+                  <Center>
+                    <Text fontSize="lg" ml={3}>
+                      {prod.Nombre}
+                    </Text>
+                  </Center>
+                </Box>
               ))}
               <FormControl isRequired>
                 <FormLabel>Nombre</FormLabel>

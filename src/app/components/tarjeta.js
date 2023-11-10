@@ -19,7 +19,7 @@ export default function Tarjeta({ record, agregarregalo }) {
           w="full"
           position="static"
           onClick={() => {
-            agregarregalo(record.id, record.cantidad - 1);
+            agregarregalo(record);
           }}
         >
           Agregar <Icon as={FiGift} ml={1} />
