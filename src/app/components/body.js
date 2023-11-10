@@ -123,19 +123,16 @@ export default function Body() {
   }, []);
 
   return (
-    <Grid
-      minH="100vh"
-      flexDir="column"
-      templateRows="auto 1fr auto"
-      backgroundColor="blackAlpha.50"
-    >
+    <Grid flexDir="column" backgroundColor="blackAlpha.50">
       <Navbar abrir={onOpen}></Navbar>
 
       {/* Hero */}
       <Flex
         w={"full"}
-        h={"85vh"}
-        backgroundImage={"url()"}
+        h={"100vh"}
+        backgroundImage={
+          "url(https://lh3.googleusercontent.com/fife/AK0iWDzE25uAdB-zgbxXF1JCRHi6Qo3s_LSA2IEOSGO6XxlVyfx7OXlmZL55VQg1J0WPOKcVVXFH7R-0OCKHO0FTxXGfW7QdqZMh5Wzj24xQm2IAv2_Vae7F1qt3ZXaO_e1dCN4SY3yYLi5BQIca1Y4LnliZLspHonCL-iCWcmI_MSKmykD8n-aEhmWJlGJeYxuBYpjtj4AI_n40ScVoiFCYuruxiuPtQYW1yc3kY_BMCtUpIBuNDfOYJDvG7Beuw-bWY4T2MWEou0hg8pekzt_ndUWYEmoGO-XuFtglIoFeO1Znv4nOs3In7O_Hq4j-vyISQYCOSWJn5NoGA7pZ_U3YpwaYoK58BFdqJn4DQXMKKkbawv0jZNL4_tcI_cWYs7a-Daz5Ix3xFFQcAIihkMvl9QqUOJ_5HLsvngjfyk99dNoHzJCQ70s5qdL46E-NMVr24YC_YG-HjMbC-ygS5n2HTMxi3723M15z17h7iwE87jMcRIwq7JqgB29h8qOM5-TrhBbmJnRlojhlV_ElakkcM1CDSwgvszVX3Sr9r4F7qJOf0k-HGR_USQrRrDqDaFxtzAKVK06u3VZPwzU0v_CiStvB_pOQpGfun2TEjuw_BXg1j1l5dinh1mn-X241AKAXQbVA-vqv88VvGQ4xG17bIqmQ0k-_lS2Dlq3XyhIz3gkCRg9wyuYYXe_9PTP6HLZ89x46UDx7ReAXxlB2N23kuG7CH_EWue7mUMOivLrfFBDylGCtBlGCqiVbzLt4A2QiZ2z09do6mXOx1ygp3utUn_q94WjQor1xfJ0FBzpPM6RDDU6OgUmkUFlGnqkr4zHn9tsZ6-wBMegvPyZQkhuziUh0XF5RZtGs1ovn2A-0jV-olICPpp8dlOGrgSYg1_-ztOk4TIEaad0hSJFHCuLzVt63HuKwUfRCHNEPDAKoFkrApvt_1lkaPdDSFg8GuPGBu90=w2880-h1430)"
+        }
         backgroundSize={"cover"}
         backgroundPosition={"center center"}
         pr={20}
