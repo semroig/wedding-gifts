@@ -140,7 +140,7 @@ export default function Body() {
         <VStack
           w={"full"}
           justify={"center"}
-          bgGradient={"linear(to-r, blackAlpha.900, transparent)"}
+          bgGradient={"linear(to-r, blackAlpha.700, transparent)"}
           mr={20}
           pr={20}
         >
@@ -203,6 +203,7 @@ export default function Body() {
                 <Tarjeta
                   record={product}
                   agregarregalo={agregarRegalo}
+                  isincarrito={carritoItems.includes(product.id)}
                 ></Tarjeta>
               </WrapItem>
             ))}
