@@ -27,9 +27,19 @@ import {
   Textarea,
   Image,
   Center,
+  CloseButton,
+  Square,
+  Spacer,
+  Icon,
+  GridItem,
+  Card,
+  CardBody,
+  CardFooter,
+  Divider,
 } from "@chakra-ui/react";
 import { useEffect, useState } from "react";
 import { createClient } from "@supabase/supabase-js";
+import { BiTrash } from "react-icons/bi";
 
 import Tarjeta from "./tarjeta";
 import Footer from "./footer";
@@ -118,6 +128,21 @@ export default function Body() {
     setRecords(registros);
   }
 
+  const eliminarItem = (id) => {
+    setCarritoItems((current) =>
+      current.filter((item) => {
+        // 👇️ remove object that has id equal to 2
+        return item !== id;
+      })
+    );
+    setProdsUpdate((current) =>
+      current.filter((item) => {
+        // 👇️ remove object that has id equal to 2
+        return item.id !== id;
+      })
+    );
+  };
+
   useEffect(() => {
     getProducts();
   }, []);
@@ -131,7 +156,7 @@ export default function Body() {
         w={"full"}
         h={"90vh"}
         backgroundImage={
-          "url(https://lh3.googleusercontent.com/drive-viewer/AK7aPaBIoAuYrjJIZfpjzi7oQH1jL0hVs7pyRyZwyTQYs848vrJrT0BSwlSlcmhG6QdrE09wpRjF5SuDD6JPzthYimQXCzEu=w2880-h1430)"
+          "url(https://fcirdfdrqppqtcvyyfzr.supabase.co/storage/v1/object/public/images/HERO%20comprimido.png?t=2023-11-14T03%3A22%3A27.001Z)"
         }
         backgroundSize={"cover"}
         backgroundPosition={"center center"}
@@ -152,11 +177,11 @@ export default function Body() {
               Somos Sem y Vicky
             </Heading>
             <Text fontSize="xl" pr={20} color="white">
-              Para hacer más sencilla su elección de regalo, aqui encontraran
-              los articulos que nos faltan para nuestro futuro hogar. Gracias
+              Para hacer más sencilla su elección de regalo, aquí encontrarán
+              los artículos que nos faltan para nuestro futuro hogar ¡Gracias
               por acompañarnos!
             </Text>
-            <Stack direction={"row"}>
+            {/* <Stack direction={"row"}>
               <Button
                 bg={"blue.400"}
                 rounded={"full"}
@@ -166,13 +191,15 @@ export default function Body() {
               >
                 Comenzar {">>"}
               </Button>
-            </Stack>
+            </Stack> */}
           </Stack>
         </VStack>
       </Flex>
 
+      {/* Deep body */}
       <Container maxW="6xl" my={20}>
         <Container maxW="6xl" centerContent mt={5}>
+          {/* Instrucciones */}
           <Stack direction={"row"} mb={10}>
             <Box>
               <Text fontSize="xl">LISTA DE ARTICULOS</Text>
@@ -182,16 +209,25 @@ export default function Body() {
             </Box>
             <Box ml={20}>
               <Text fontSize="xl">
-                1. Clickea en “Agregar” para reservar los articulos que queres
+                <Text fontSize="xl" as="b">
+                  1.
+                </Text>{" "}
+                Clickeá en “Agregar” para reservar los artículos que querés
                 regalarnos
               </Text>
               <Text fontSize="xl">
-                2. Clickea el boton de “Carrito” para ver los articulos que
+                <Text fontSize="xl" as="b">
+                  2.
+                </Text>{" "}
+                Clickeá el botón de “Carrito” para ver los artículos que
                 seleccionaste
               </Text>
               <Text fontSize="xl">
-                3. Una vez enviada tu reserva de articulos, compralos donde mas
-                te guste!
+                <Text fontSize="xl" as="b">
+                  3.
+                </Text>{" "}
+                Una vez enviada tu reserva de artículos, ¡compralos donde más te
+                guste!
               </Text>
             </Box>
           </Stack>
@@ -208,6 +244,33 @@ export default function Body() {
               </WrapItem>
             ))}
           </Wrap>
+
+          {/* Alias */}
+          <Card direction="row" rounded="lg" shadow="lg" w="80%" mt={20}>
+            <Stack p={5}>
+              <CardBody>
+                <Text fontSize="lg" color="blue.700">
+                  Si no pueden comprarnos un regalo, ¡también pueden ayudarnos
+                  con nuestra luna de miel! Depositen su contribución en nuestra
+                  cuenta con el alias{" "}
+                  <Text as="b" fontSize="lg" color="blue.700">
+                    {"sem.vicky"}
+                  </Text>
+                  .
+                </Text>
+                <Text fontSize="lg" mt={3} color="blue.700">
+                  ¡Gracias por su ayuda! :)
+                </Text>
+              </CardBody>
+            </Stack>
+            <Image
+              // rounded="lg"
+              borderRightRadius="10"
+              maxW={{ base: "100%", sm: "440px" }}
+              src="https://fcirdfdrqppqtcvyyfzr.supabase.co/storage/v1/object/public/images/cardAlias.png"
+              alt="Caffe Latte"
+            />
+          </Card>
         </Container>
       </Container>
 
@@ -222,26 +285,52 @@ export default function Body() {
 
           <form onSubmit={regalarAction}>
             <ModalBody>
+              <Text fontSize="md" mb={4}>
+                Al hacer click en{" "}
+                <Text as="b" color="orange.400">
+                  Regalar
+                </Text>
+                , estás simplemente reservando los artículos en la lista de
+                regalos. Luego, tendrás que comprar los regalos por tu cuenta en
+                el lugar que prefieras!
+              </Text>
+
               {prodsUpdate?.map((prod) => (
                 <Box
                   key={prod.id}
                   borderWidth="1px"
                   borderRadius="lg"
-                  display="flex"
                   p={3}
                   my={3}
                 >
-                  <Image
-                    src={prod.image_url}
-                    alt={prod.Nombre}
-                    boxSize="80px"
-                    borderRadius="lg"
-                  />
-                  <Center>
-                    <Text fontSize="lg" ml={3}>
-                      {prod.Nombre}
-                    </Text>
-                  </Center>
+                  <Grid
+                    templateColumns="repeat(8, 1fr)"
+                    gap={3}
+                    alignItems="center"
+                  >
+                    <GridItem colSpan={2}>
+                      <Image
+                        src={prod.image_url}
+                        alt={prod.Nombre}
+                        boxSize="80px"
+                        borderRadius="lg"
+                      />
+                    </GridItem>
+                    <GridItem colSpan={5}>
+                      <Text fontSize="lg" ml={3}>
+                        {prod.Nombre}
+                      </Text>
+                    </GridItem>
+                    <GridItem colSpan={1}>
+                      <Button
+                        colorScheme="red"
+                        variant="ghost"
+                        onClick={() => eliminarItem(prod.id)}
+                      >
+                        <Icon as={BiTrash} boxSize={5} />
+                      </Button>
+                    </GridItem>
+                  </Grid>
                 </Box>
               ))}
               <FormControl isRequired>

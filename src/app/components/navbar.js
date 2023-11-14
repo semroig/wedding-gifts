@@ -15,11 +15,9 @@ export default function Navbar({ abrir }) {
           <Flex justifyContent="space-between" alignItems="center">
             <Heading fontSize="xl">Sem & Vicky</Heading>
 
-            <Flex gap={4} alignItems="center" fontWeight="semibold">
-              <Button onClick={abrir} variant="accent">
-                <Icon as={FiGift} mr={1} /> Carrito
-              </Button>
-            </Flex>
+            <Button onClick={abrir} variant="accent">
+              <Icon as={FiGift} mr={1} /> Carrito
+            </Button>
           </Flex>
         </Container>
       </Box>
