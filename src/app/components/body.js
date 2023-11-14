@@ -256,10 +256,9 @@ export default function Body() {
                   <Text as="b" fontSize="lg" color="blue.700">
                     {"sem.vicky"}
                   </Text>
-                  .
                 </Text>
                 <Text fontSize="lg" mt={3} color="blue.700">
-                  ¡Gracias por su ayuda! :)
+                  ¡Gracias por su amor! :)
                 </Text>
               </CardBody>
             </Stack>
