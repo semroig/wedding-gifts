@@ -28,7 +28,7 @@ export default function Tarjeta({ record, agregarregalo, isincarrito }) {
           borderRadius="lg"
           boxSize="220px"
         />
-        <Text fontSize="md" py={3}>
+        <Text fontSize="md" py={3} color="blackAlpha.800">
           {record.Nombre}
         </Text>
         {isincarrito == true ? (

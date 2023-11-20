@@ -202,12 +202,16 @@ export default function Body() {
           {/* Instrucciones */}
           <Stack direction={"row"} mb={10}>
             <Box>
-              <Text fontSize="xl">LISTA DE ARTICULOS</Text>
-              <Heading size="2xl" pr={20}>
+              <Text fontSize="xl" color="blackAlpha.600">
+                LISTA DE ARTICULOS
+              </Text>
+              <Divider mr={20} border="1px" color="blackAlpha.600"></Divider>
+              {/* <hr style={{ height: "6px" }}></hr> */}
+              <Heading size="2xl" pr={20} color="blackAlpha.800">
                 Agregá y reservá tu regalo
               </Heading>
             </Box>
-            <Box ml={20}>
+            <Box ml={20} color="blackAlpha.800">
               <Text fontSize="xl">
                 <Text fontSize="xl" as="b">
                   1.
@@ -278,7 +282,7 @@ export default function Body() {
       {/* Modal for carrito */}
       <Modal isOpen={isOpen} onClose={onClose}>
         <ModalOverlay />
-        <ModalContent>
+        <ModalContent color="blackAlpha.800">
           <ModalHeader>Carrito de regalos</ModalHeader>
           <ModalCloseButton />
 

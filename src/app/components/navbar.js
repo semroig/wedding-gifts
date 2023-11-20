@@ -10,6 +10,7 @@ export default function Navbar({ abrir }) {
         as="nav"
         borderBottom="1px solid grey"
         backgroundColor="rgba(255,255,255,0.9)"
+        color="blackAlpha.800"
       >
         <Container maxW="container.lg" py={6}>
           <Flex justifyContent="space-between" alignItems="center">
