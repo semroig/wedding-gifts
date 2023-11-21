@@ -40,6 +40,11 @@ import {
 import { useEffect, useState } from "react";
 import { createClient } from "@supabase/supabase-js";
 import { BiTrash } from "react-icons/bi";
+import {
+  PiNumberOneBold,
+  PiNumberTwoBold,
+  PiNumberThreeBold,
+} from "react-icons/pi";
 
 import Tarjeta from "./tarjeta";
 import Footer from "./footer";
@@ -200,44 +205,75 @@ export default function Body() {
       <Container maxW="6xl" my={20}>
         <Container maxW="6xl" centerContent mt={5}>
           {/* Instrucciones */}
-          <Stack direction={"row"} mb={10}>
+          <Stack direction={"row"}>
             <Box>
               <Text fontSize="xl" color="blackAlpha.600">
                 LISTA DE ARTICULOS
               </Text>
-              <Divider mr={20} border="1px" color="blackAlpha.600"></Divider>
-              {/* <hr style={{ height: "6px" }}></hr> */}
-              <Heading size="2xl" pr={20} color="blackAlpha.800">
+              <Box pr={20}>
+                <Divider mr={20} border="1px" color="blackAlpha.600"></Divider>
+              </Box>
+              <Heading size="2xl" pr={20} color="blackAlpha.800" mt={5}>
                 Agregá y reservá tu regalo
               </Heading>
             </Box>
             <Box ml={20} color="blackAlpha.800">
-              <Text fontSize="xl">
-                <Text fontSize="xl" as="b">
-                  1.
-                </Text>{" "}
-                Clickeá en “Agregar” para reservar los artículos que querés
-                regalarnos
-              </Text>
-              <Text fontSize="xl">
-                <Text fontSize="xl" as="b">
-                  2.
-                </Text>{" "}
-                Clickeá el botón de “Carrito” para ver los artículos que
-                seleccionaste
-              </Text>
-              <Text fontSize="xl">
-                <Text fontSize="xl" as="b">
-                  3.
-                </Text>{" "}
-                Una vez enviada tu reserva de artículos, ¡compralos donde más te
-                guste!
-              </Text>
+              <Stack direction={"row"} mb={2}>
+                <Center>
+                  <Icon
+                    as={PiNumberOneBold}
+                    boxSize={10}
+                    boxShadow="md"
+                    borderRadius="full"
+                    color="cyan.600"
+                    p={2}
+                    mr={2}
+                  ></Icon>
+                </Center>
+                <Text fontSize="xl">
+                  Clickeá en “Agregar” para reservar los artículos que querés
+                  regalarnos
+                </Text>
+              </Stack>
+              <Stack direction={"row"} mb={2}>
+                <Center>
+                  <Icon
+                    as={PiNumberTwoBold}
+                    boxSize={10}
+                    boxShadow="md"
+                    borderRadius="full"
+                    color="cyan.600"
+                    p={2}
+                    mr={2}
+                  ></Icon>
+                </Center>
+                <Text fontSize="xl">
+                  Clickeá el botón de “Carrito” para ver los artículos que
+                  seleccionaste
+                </Text>
+              </Stack>
+              <Stack direction={"row"}>
+                <Center>
+                  <Icon
+                    as={PiNumberThreeBold}
+                    boxSize={10}
+                    boxShadow="md"
+                    borderRadius="full"
+                    color="cyan.600"
+                    p={2}
+                    mr={2}
+                  ></Icon>
+                </Center>
+                <Text fontSize="xl">
+                  Una vez enviada tu reserva de artículos, ¡compralos donde más
+                  te guste!
+                </Text>
+              </Stack>
             </Box>
           </Stack>
 
           {/* Catalogo */}
-          <Wrap spacing={4} justify="center">
+          <Wrap spacing={4} justify="center" mt={14}>
             {records?.map((product) => (
               <WrapItem key={product.id}>
                 <Tarjeta
