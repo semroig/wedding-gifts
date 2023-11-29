@@ -202,7 +202,7 @@ export default function Body() {
       </Flex>
 
       {/* Deep body */}
-      <Container maxW="6xl" my={20}>
+      <Container maxW="6xl" mb={10} mt={20}>
         <Container maxW="6xl" centerContent mt={5}>
           {/* Instrucciones */}
           <Stack direction={"row"}>
@@ -286,18 +286,18 @@ export default function Body() {
           </Wrap>
 
           {/* Alias */}
-          <Card direction="row" rounded="lg" shadow="lg" w="80%" mt={20}>
+          <Card direction="row" rounded="lg" shadow="lg" w="90%" mt={20}>
             <Stack p={5}>
               <CardBody>
-                <Text fontSize="lg" color="blue.700">
+                <Text fontSize="xl" color="blue.700">
                   Si no pueden comprarnos un regalo, ¡también pueden ayudarnos
                   con nuestra luna de miel! Depositen su contribución en nuestra
                   cuenta con el alias{" "}
-                  <Text as="b" fontSize="lg" color="blue.700">
+                  <Text as="b" fontSize="xl" color="blue.700">
                     {"sem.vicky"}
                   </Text>
                 </Text>
-                <Text fontSize="lg" mt={3} color="blue.700">
+                <Text fontSize="xl" mt={3} color="blue.700">
                   ¡Gracias por su amor! :)
                 </Text>
               </CardBody>
@@ -305,7 +305,7 @@ export default function Body() {
             <Image
               // rounded="lg"
               borderRightRadius="10"
-              maxW={{ base: "100%", sm: "440px" }}
+              maxW="50%"
               src="https://fcirdfdrqppqtcvyyfzr.supabase.co/storage/v1/object/public/images/cardAlias.png"
               alt="Caffe Latte"
             />

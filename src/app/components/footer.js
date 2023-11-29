@@ -1,17 +1,45 @@
-import { Text, Box, Container, Grid, Flex } from "@chakra-ui/react";
+import {
+  Text,
+  Box,
+  Container,
+  Grid,
+  GridItem,
+  Center,
+  Image,
+} from "@chakra-ui/react";
 
 export default function Footer() {
   return (
-    <Box mt="auto" as="footer" pt={2} color="blackAlpha.800">
-      <Container maxW="container.lg" pb={4} pt={2} borderTop="1px solid black">
-        <Grid templateColumns="repeat(3, 1fr)" gap={1}>
-          <Text fontSize="sm">🇦🇷 2023 - Design and developed with ♡ by us</Text>
+    <Box as="footer" py={16} color="cyan.600">
+      <Box boxShadow="md" mb={12} backgroundColor="white">
+        <Image
+          src="https://fcirdfdrqppqtcvyyfzr.supabase.co/storage/v1/object/public/images/cinta"
+          alt="cinta"
+          fit="cover"
+        />
+      </Box>
 
-          <Flex justifyContent="center">
-            <Text fontSize="2xl" color="accent">
-              Sem & Vicky
+      <Container maxW="container.lg">
+        <Grid templateColumns="repeat(3, 1fr)" gap={1}>
+          <GridItem colSpan={2} pt={8}>
+            <Text
+              fontSize="md"
+              borderTop="2px solid"
+              pt={5}
+              borderColor="cyan.600"
+            >
+              🇦🇷 AR 2023 - Design and developed with ♡ by us
             </Text>
-          </Flex>
+          </GridItem>
+          <GridItem colSpan={1}>
+            <Center ml={14}>
+              <Image
+                src="https://fcirdfdrqppqtcvyyfzr.supabase.co/storage/v1/object/public/images/firma.png"
+                alt="firma"
+                fit="cover"
+              />
+            </Center>
+          </GridItem>
         </Grid>
       </Container>
     </Box>
