@@ -27,24 +27,23 @@ import {
   Textarea,
   Image,
   Center,
-  CloseButton,
-  Square,
-  Spacer,
   Icon,
   GridItem,
   Card,
   CardBody,
-  CardFooter,
   Divider,
 } from "@chakra-ui/react";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import { createClient } from "@supabase/supabase-js";
+
+// Importo custom icons
 import { BiTrash } from "react-icons/bi";
 import {
   PiNumberOneBold,
   PiNumberTwoBold,
   PiNumberThreeBold,
 } from "react-icons/pi";
+import { FaAnglesRight } from "react-icons/fa6";
 
 import Tarjeta from "./tarjeta";
 import Footer from "./footer";
@@ -56,6 +55,12 @@ const supabase = createClient(
 );
 
 export default function Body() {
+  const ref = useRef(null);
+
+  const handleScroll = () => {
+    ref.current?.scrollIntoView({ behavior: "smooth", block: "start" });
+  };
+
   const { isOpen, onOpen, onClose } = useDisclosure();
   const toast = useToast();
 
@@ -186,6 +191,20 @@ export default function Body() {
               los artículos que nos faltan para nuestro futuro hogar ¡Gracias
               por acompañarnos!
             </Text>
+            <Box>
+              <Button
+                variant="outline"
+                position="static"
+                color="white"
+                rounded="full"
+                size="md"
+                onClick={handleScroll}
+                _hover={{ bg: "blackAlpha.800" }}
+              >
+                Comenzar <Icon as={FaAnglesRight} ml={3}></Icon>
+              </Button>
+            </Box>
+
             {/* <Stack direction={"row"}>
               <Button
                 bg={"blue.400"}
@@ -201,6 +220,9 @@ export default function Body() {
         </VStack>
       </Flex>
 
+      {/* Div for ref auto scroll */}
+      <Box ref={ref} mb={10}></Box>
+
       {/* Deep body */}
       <Container maxW="6xl" mb={10} mt={20}>
         <Container maxW="6xl" centerContent mt={5}>
@@ -210,8 +232,13 @@ export default function Body() {
               <Text fontSize="xl" color="blackAlpha.600">
                 LISTA DE ARTICULOS
               </Text>
-              <Box pr={20}>
-                <Divider mr={20} border="1px" color="blackAlpha.600"></Divider>
+              <Box pr={20} position="static">
+                <Divider
+                  mr={20}
+                  border="1px"
+                  color="blackAlpha.600"
+                  position="static"
+                ></Divider>
               </Box>
               <Heading size="2xl" pr={20} color="blackAlpha.800" mt={5}>
                 Agregá y reservá tu regalo
@@ -286,7 +313,14 @@ export default function Body() {
           </Wrap>
 
           {/* Alias */}
-          <Card direction="row" rounded="lg" shadow="lg" w="90%" mt={20}>
+          <Card
+            direction="row"
+            rounded="lg"
+            shadow="lg"
+            w="90%"
+            mt={20}
+            position="static"
+          >
             <Stack p={5}>
               <CardBody>
                 <Text fontSize="xl" color="blue.700">
@@ -385,7 +419,7 @@ export default function Body() {
             </ModalBody>
 
             <ModalFooter>
-              <Button variant="outline" mr={3} type="submit">
+              <Button variant="primary" mr={3} type="submit">
                 Regalar :)
               </Button>
             </ModalFooter>

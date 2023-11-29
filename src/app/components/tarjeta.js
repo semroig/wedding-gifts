@@ -37,7 +37,7 @@ export default function Tarjeta({ record, agregarregalo, isincarrito }) {
           </Button>
         ) : (
           <Button
-            variant="outline"
+            variant="primary"
             w="full"
             position="static"
             onClick={() => {

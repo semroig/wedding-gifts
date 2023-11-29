@@ -8,7 +8,7 @@ export function Providers({ children }) {
     components: {
       Button: {
         variants: {
-          outline: {
+          primary: {
             bg: "white",
             color: "orange.400",
             border: "2px solid",
