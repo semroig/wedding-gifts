@@ -22,7 +22,6 @@ import {
   Wrap,
   Grid,
   Flex,
-  VStack,
   Box,
   Textarea,
   Image,
@@ -158,7 +157,7 @@ export default function Body() {
   }, []);
 
   return (
-    <Grid flexDir="column" backgroundColor="blackAlpha.50">
+    <Stack backgroundColor="blackAlpha.50" spacing="0px">
       <Navbar abrir={onOpen}></Navbar>
 
       {/* Hero */}
@@ -170,54 +169,46 @@ export default function Body() {
         }
         backgroundSize={"cover"}
         backgroundPosition={"center center"}
-        pr={20}
       >
-        <VStack
+        <Stack
           w={"full"}
-          justify={"center"}
-          bgGradient={"linear(to-r, blackAlpha.700, transparent)"}
-          mr={20}
-          pr={20}
+          bgGradient={"linear(to-r, blackAlpha.900, transparent)"}
+          justify="center"
         >
-          <Stack maxW={"2xl"} spacing={4} pr={20} mr={20}>
-            <Text fontSize="3xl" color="white">
-              ¡Hola!
-            </Text>
-            <Heading size="2xl" color="white">
-              Somos Sem y Vicky
-            </Heading>
-            <Text fontSize="xl" pr={20} color="white">
-              Para hacer más sencilla su elección de regalo, aquí encontrarán
-              los artículos que nos faltan para nuestro futuro hogar ¡Gracias
-              por acompañarnos!
-            </Text>
-            <Box>
-              <Button
-                variant="outline"
-                position="static"
-                color="white"
-                rounded="full"
-                size="md"
-                onClick={handleScroll}
-                _hover={{ bg: "blackAlpha.800" }}
-              >
-                Comenzar <Icon as={FaAnglesRight} ml={3}></Icon>
-              </Button>
-            </Box>
-
-            {/* <Stack direction={"row"}>
-              <Button
-                bg={"blue.400"}
-                rounded={"full"}
-                color={"white"}
-                _hover={{ bg: "blue.500" }}
-                position="static"
-              >
-                Comenzar {">>"}
-              </Button>
-            </Stack> */}
+          <Stack direction={{ base: "column", md: "row" }}>
+            {/* Agrego containers vacios para generar espacio */}
+            <Container width="sm"></Container>
+            <Container maxW="xl">
+              <Stack spacing={4} mr={20}>
+                <Text fontSize="3xl" color="white">
+                  ¡Hola!
+                </Text>
+                <Heading size="2xl" color="white">
+                  Somos Sem y Vicky
+                </Heading>
+                <Text fontSize="xl" color="white">
+                  Para hacer más sencilla su elección de regalo, aquí
+                  encontrarán los artículos que nos faltan para nuestro futuro
+                  hogar ¡Gracias por acompañarnos!
+                </Text>
+                <Box>
+                  <Button
+                    variant="outline"
+                    position="static"
+                    color="white"
+                    rounded="full"
+                    size="md"
+                    onClick={handleScroll}
+                    _hover={{ bg: "blackAlpha.800" }}
+                  >
+                    Comenzar <Icon as={FaAnglesRight} ml={3}></Icon>
+                  </Button>
+                </Box>
+              </Stack>
+            </Container>
+            <Container width="2xl"></Container>
           </Stack>
-        </VStack>
+        </Stack>
       </Flex>
 
       {/* Div for ref auto scroll */}
@@ -227,12 +218,12 @@ export default function Body() {
       <Container maxW="6xl" mb={10} mt={20}>
         <Container maxW="6xl" centerContent mt={5}>
           {/* Instrucciones */}
-          <Stack direction={"row"}>
+          <Stack direction={{ base: "column", md: "row" }}>
             <Box>
               <Text fontSize="xl" color="blackAlpha.600">
                 LISTA DE ARTICULOS
               </Text>
-              <Box pr={20} position="static">
+              <Box position="static">
                 <Divider
                   mr={20}
                   border="1px"
@@ -240,7 +231,7 @@ export default function Body() {
                   position="static"
                 ></Divider>
               </Box>
-              <Heading size="2xl" pr={20} color="blackAlpha.800" mt={5}>
+              <Heading size="2xl" color="blackAlpha.800" mt={5}>
                 Agregá y reservá tu regalo
               </Heading>
             </Box>
@@ -337,7 +328,6 @@ export default function Body() {
               </CardBody>
             </Stack>
             <Image
-              // rounded="lg"
               borderRightRadius="10"
               maxW="50%"
               src="https://fcirdfdrqppqtcvyyfzr.supabase.co/storage/v1/object/public/images/cardAlias.png"
@@ -426,6 +416,6 @@ export default function Body() {
           </form>
         </ModalContent>
       </Modal>
-    </Grid>
+    </Stack>
   );
 }

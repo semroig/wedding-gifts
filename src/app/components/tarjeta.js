@@ -1,22 +1,6 @@
-import {
-  Text,
-  Card,
-  CardBody,
-  Image,
-  Button,
-  Icon,
-  Center,
-} from "@chakra-ui/react";
+import { Text, Card, CardBody, Image, Button, Icon } from "@chakra-ui/react";
 import { FiGift } from "react-icons/fi";
 import { BsCheckLg } from "react-icons/bs";
-
-{
-  /* <Center>
-            <Text color="blue.700" fontSize="lg">
-              Agregado <Icon as={BsCheckLg} ml={1} />
-            </Text>
-          </Center> */
-}
 
 export default function Tarjeta({ record, agregarregalo, isincarrito }) {
   return (
