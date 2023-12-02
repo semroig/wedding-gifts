@@ -218,24 +218,25 @@ export default function Body() {
       <Container maxW="6xl" mb={10} mt={20}>
         <Container maxW="6xl" centerContent mt={5}>
           {/* Instrucciones */}
-          <Stack direction={{ base: "column", md: "row" }}>
+          <Stack
+            direction={{ base: "column", md: "row" }}
+            spacing={{ base: "10", md: "20" }}
+          >
             <Box>
               <Text fontSize="xl" color="blackAlpha.600">
                 LISTA DE ARTICULOS
               </Text>
-              <Box position="static">
-                <Divider
-                  mr={20}
-                  border="1px"
-                  color="blackAlpha.600"
-                  position="static"
-                ></Divider>
-              </Box>
+              <Divider
+                mr={20}
+                border="1px"
+                color="blackAlpha.600"
+                position="static"
+              ></Divider>
               <Heading size="2xl" color="blackAlpha.800" mt={5}>
                 Agregá y reservá tu regalo
               </Heading>
             </Box>
-            <Box ml={20} color="blackAlpha.800">
+            <Box color="blackAlpha.800">
               <Stack direction={"row"} mb={2}>
                 <Center>
                   <Icon
@@ -312,8 +313,8 @@ export default function Body() {
             mt={20}
             position="static"
           >
-            <Stack p={5}>
-              <CardBody>
+            <CardBody>
+              <Box p={5}>
                 <Text fontSize="xl" color="blue.700">
                   Si no pueden comprarnos un regalo, ¡también pueden ayudarnos
                   con nuestra luna de miel! Depositen su contribución en nuestra
@@ -325,11 +326,11 @@ export default function Body() {
                 <Text fontSize="xl" mt={3} color="blue.700">
                   ¡Gracias por su amor! :)
                 </Text>
-              </CardBody>
-            </Stack>
+              </Box>
+            </CardBody>
             <Image
               borderRightRadius="10"
-              maxW="50%"
+              maxW={{ base: "0%", md: "50%" }}
               src="https://fcirdfdrqppqtcvyyfzr.supabase.co/storage/v1/object/public/images/cardAlias.png"
               alt="Caffe Latte"
             />
@@ -342,7 +343,7 @@ export default function Body() {
       {/* Modal for carrito */}
       <Modal isOpen={isOpen} onClose={onClose}>
         <ModalOverlay />
-        <ModalContent color="blackAlpha.800">
+        <ModalContent color="blackAlpha.800" mx={{ base: "2", md: "1" }}>
           <ModalHeader>Carrito de regalos</ModalHeader>
           <ModalCloseButton />
 
